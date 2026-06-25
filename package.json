@@ -3,5 +3,8 @@
   "scripts": {
     "build": "pnpm -r build",
     "dev": "pnpm --filter @apps/web dev"
+  },
+  "dependencies": {
+    "typescript": "^6.0.3"
   }
 }
