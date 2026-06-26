@@ -4,7 +4,7 @@
     "build": "pnpm -r build",
     "dev": "pnpm --filter @apps/web dev"
   },
-  "dependencies": {
+  "devDependencies": {
     "typescript": "^5.9.3"
   }
 }
