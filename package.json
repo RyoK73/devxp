@@ -5,6 +5,7 @@
     "dev": "pnpm --filter @apps/web dev"
   },
   "devDependencies": {
+    "tsx": "^4.22.4",
     "typescript": "^5.9.3"
   }
 }
