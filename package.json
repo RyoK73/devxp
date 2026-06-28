@@ -6,7 +6,6 @@
   },
   "devDependencies": {
     "tsx": "^4.22.4",
-    "typescript": "^5.9.3",
-    "supabase": "^2.108.0"
+    "typescript": "^5.9.3"
   }
 }
