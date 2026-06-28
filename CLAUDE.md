@@ -7,3 +7,4 @@
 
 - 主な解説はREADME.mdへ、詳細をdocへ分割する
 - PRの作成時にREADME.md,docの解説を変更に合わせて編集する
+- [スキーマ設計](doc/schema.md) — Supabase テーブル定義
