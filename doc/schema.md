@@ -71,6 +71,10 @@ reward_id   uuid NOT NULL REFERENCES rewards(id) ON DELETE CASCADE
 unlocked_at timestamptz NOT NULL DEFAULT now()
 ```
 
+## 関連ドキュメント
+
+- [RLS設計](rls.md) — Row Level Security のポリシー方針
+
 ## 設計メモ
 
 - `auth.users` は Supabase 管理。`profiles` テーブルは作成しない

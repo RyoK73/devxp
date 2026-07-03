@@ -12,6 +12,7 @@
 ## ドキュメント
 
 - [スキーマ設計](doc/schema.md) — Supabase テーブル定義
+- [RLS設計](doc/rls.md) — Row Level Security のポリシー方針
 
 ## アーキテクチャ
 

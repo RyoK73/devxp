@@ -32,8 +32,7 @@ ON api_keys
 AS permissive
 FOR DELETE
 TO authenticated
-USING ((SELECT auth.uid()) = user_id)
-WITH CHECK ((SELECT auth.uid()) = user_id);
+USING ((SELECT auth.uid()) = user_id);
 
 CREATE POLICY access_own_rewards
 ON rewards
@@ -51,7 +50,7 @@ TO authenticated
 USING ((SELECT auth.uid()) = user_id);
 
 CREATE POLICY select_own_reward_unlock_logs
-ON reward_logs
+ON reward_unlock_logs
 AS permissive
 FOR SELECT
 TO authenticated
