@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# devxp web
 
-## Getting Started
+DevXP の Web ダッシュボード。CLI から送信された diff データを受け取り、XP を算出して Supabase に保存し、ダッシュボードとして表示する。
 
-First, run the development server:
+詳細な全体構成は[ルートREADME](../../README.md)を参照。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 責任範囲
+
+**担うこと**
+
+- CLI からの diff データ受信（API キー認証）
+- XP 算出ロジック（非公開）——CLI は OSS として npm 公開されるため、換算ロジックの改ざん（チート）を防ぐ目的で Web 側に閉じる
+- Supabase への永続化
+- GitHub OAuth によるユーザー識別
+- ダッシュボード UI（レベル / XP バー / アクティビティヒートマップ / ご褒美システム / バッジ / ジャーナル）
+
+**担わないこと**
+
+- git diff の収集そのもの（[CLI](../cli/README.md)の責務）
+
+## ディレクトリ構造（予定）
+
+```
+apps/web/
+└── app/
+    ├── api/            # CLI から diff を受け取るエンドポイント（予定）
+    ├── (dashboard)/     # ダッシュボード画面（予定）
+    ├── layout.tsx
+    ├── page.tsx
+    └── globals.css
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 開発コマンド
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# 開発サーバー起動
+pnpm dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# ビルド
+pnpm build
 
-## Learn More
+# 本番起動
+pnpm start
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Lint
+pnpm lint
+```

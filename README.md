@@ -13,6 +13,8 @@
 
 - [スキーマ設計](doc/schema.md) — Supabase テーブル定義
 - [RLS設計](doc/rls.md) — Row Level Security のポリシー方針
+- [CLI](apps/cli/README.md) — CLI パッケージの責任範囲・構成
+- [Web](apps/web/README.md) — Web パッケージの責任範囲・構成
 
 ## アーキテクチャ
 
@@ -20,7 +22,7 @@
 [ローカルの git リポジトリ]
         ↓  post-commit hook / devxp sync
 [CLI: devxp (npm)]
-        ↓  XP 送信（API キー認証）
+        ↓  diff 送信（API キー認証）
 [Web API: Next.js / Vercel]
         ↓  保存
 [DB: Supabase]
@@ -28,11 +30,13 @@
 [Web ダッシュボード]
 ```
 
+CLI は git のコミット差分（追加/削除行数）を収集して Web API へ送信するのみを担う。XP の算出ロジックは Web API 側で非公開のまま処理する——CLI は npm で OSS 公開されるため、換算ロジックをそちら側に置くと改ざん（チート）が容易になってしまうことへの対策である。
+
 ### モノレポ構成
 
 ```
 devxp/
-├── packages/
+├── apps/
 │   ├── cli/        # OSS / npm publish as "devxp"
 │   └── web/        # Next.js + Supabase + Vercel
 └── doc/
