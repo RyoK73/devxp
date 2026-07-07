@@ -1,0 +1,22 @@
+{
+  "$schema": "https://pg-language-server.com/latest/schema.json",
+  "db": {
+    "host": "127.0.0.1",
+    "port": 54322, // supabase startのデフォルトDBポート
+    "username": "postgres",
+    "password": "postgres",
+    "database": "postgres",
+    "allowStatementExecutionsAgainst": ["127.0.0.1/*", "localhost/*"],
+  },
+  // フォーマット設定(保存時)
+  "format": {
+    "enabled": true,
+    "lineWidth": 100,
+    "indentSize": 2,
+    "indentStyle": "spaces",
+    "keywordCase": "upper", // CREATEなどキーワードの大文字(uppser)/小文字(lower)を設定
+    "constantCase": "upper", // TRUEなど定数の大文字(uppser)/小文字(lower)を設定
+
+    "typeCase": "lower", // textなどデータ型の大文字(uppser)/小文字(lower)を設定
+  },
+}
