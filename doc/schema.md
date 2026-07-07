@@ -62,7 +62,7 @@ xp_amount   integer NOT NULL
 created_at  timestamptz NOT NULL DEFAULT now()
 ```
 
-### `reward_unlocks_logs`（解放日時の記録）
+### `reward_unlock_logs`（解放日時の記録）
 
 ```sql
 id          uuid PRIMARY KEY DEFAULT gen_random_uuid()
@@ -84,4 +84,4 @@ unlocked_at timestamptz NOT NULL DEFAULT now()
 - 利用可能XP = `SUM(activity_logs.xp_earned)` − `SUM(reward_logs.xp_amount)`
 - サイクル開始時刻は `repeat_type` から導出（`daily` = 今日0時、`weekly` = 今週月曜0時）
   - 今サイクルの投入済みXP → `SUM(reward_logs.xp_amount) WHERE created_at >= <cycle_start>`
-  - 今サイクルの解放回数 → `COUNT(*) FROM reward_unlocks WHERE unlocked_at >= <cycle_start>`
+  - 今サイクルの解放回数 → `COUNT(*) FROM reward_unlock WHERE unlocked_at >= <cycle_start>`
