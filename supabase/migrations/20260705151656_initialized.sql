@@ -252,88 +252,30 @@ ALTER PUBLICATION supabase_realtime OWNER TO postgres;
 
 GRANT USAGE ON SCHEMA public TO postgres;
 
-GRANT USAGE ON SCHEMA public TO anon;
-
 GRANT USAGE ON SCHEMA public TO authenticated;
 
 GRANT USAGE ON SCHEMA public TO service_role;
 
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.activity_logs TO anon;
+GRANT SELECT ON TABLE public.activity_logs TO authenticated;
 
-GRANT SELECT,
-REFERENCES,
-TRIGGER,
-TRUNCATE,
-MAINTAIN
-ON TABLE public.activity_logs
-TO authenticated;
+GRANT SELECT, INSERT ON TABLE public.activity_logs TO service_role;
 
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.activity_logs TO service_role;
+GRANT SELECT, INSERT, DELETE ON TABLE public.api_keys TO authenticated;
 
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.api_keys TO anon;
+GRANT SELECT, UPDATE ON TABLE public.api_keys TO service_role;
 
-GRANT SELECT,
-INSERT,
-REFERENCES,
-DELETE,
-TRIGGER,
-TRUNCATE,
-MAINTAIN
-ON TABLE public.api_keys
-TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.projects TO authenticated;
 
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.api_keys TO service_role;
+GRANT SELECT ON TABLE public.projects TO service_role;
 
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.projects TO anon;
+GRANT SELECT ON TABLE public.reward_logs TO authenticated;
 
-GRANT ALL ON TABLE public.projects TO authenticated;
+GRANT SELECT, INSERT ON TABLE public.reward_logs TO service_role;
 
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.projects TO service_role;
+GRANT SELECT ON TABLE public.reward_unlock_logs TO authenticated;
 
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.reward_logs TO anon;
+GRANT SELECT, INSERT ON TABLE public.reward_unlock_logs TO service_role;
 
-GRANT SELECT, REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.reward_logs TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.rewards TO authenticated;
 
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.reward_logs TO service_role;
-
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.reward_unlock_logs TO anon;
-
-GRANT SELECT,
-REFERENCES,
-TRIGGER,
-TRUNCATE,
-MAINTAIN
-ON TABLE public.reward_unlock_logs
-TO authenticated;
-
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.reward_unlock_logs TO service_role;
-
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.rewards TO anon;
-
-GRANT ALL ON TABLE public.rewards TO authenticated;
-
-GRANT REFERENCES, TRIGGER, TRUNCATE, MAINTAIN ON TABLE public.rewards TO service_role;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON SEQUENCES TO postgres;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON SEQUENCES TO anon;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON SEQUENCES TO authenticated;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON SEQUENCES TO service_role;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON FUNCTIONS TO postgres;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON FUNCTIONS TO anon;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON FUNCTIONS TO authenticated;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON FUNCTIONS TO service_role;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES TO postgres;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES TO anon;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES TO authenticated;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES TO service_role;
+GRANT SELECT ON TABLE public.rewards TO service_role;
