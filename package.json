@@ -2,9 +2,15 @@
   "private": true,
   "scripts": {
     "build": "pnpm -r build",
-    "dev": "pnpm --filter @apps/web dev"
+    "dev": "pnpm --filter @apps/web dev",
+    "db:version": "supabase --version",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:status": "supabase status",
+    "db:push": "supabase db push"
   },
   "devDependencies": {
+    "supabase": "^2.109.0",
     "tsx": "^4.22.4",
     "typescript": "^5.9.3"
   }
