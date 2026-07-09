@@ -43,7 +43,8 @@ app/
 │       └── plan/
 │           └── page.tsx              # プラン管理(実体は/pricingへのリンクのみ)  →  /dashboard/settings/plan
 │
-└── middleware.ts                      # /dashboard/* はSupabaseセッション必須。未ログインは/loginへ
+├── ~~middleware.ts~~                   # ~~/dashboard/* はSupabaseセッション必須。未ログインは/loginへ~~
+└── proxy.ts                            # /dashboard/* はSupabaseセッション必須。未ログインは/loginへ(Next.js 16でmiddleware.tsから名称変更。exportする関数名もmiddleware→proxy)
 ```
 
 ---
@@ -106,7 +107,9 @@ export default async function MarketingLayout({ children }: { children: React.Re
 `/dashboard`と`/dashboard/settings`はコンテンツを持たず、`redirect()`でデフォルトのサブページに飛ばすだけにする。これによりサイドバー側の「選択中ハイライト」判定が、常にサブページのpathnameを見るだけで済みシンプルになる。
 
 ### 8. 認証ガード
-`middleware.ts`で`/dashboard`以下すべてに対しSupabaseセッションの有無をチェックし、未ログインなら`/login`へリダイレクトする。GitHub OAuthのcode交換自体は`auth/callback/route.ts`(Route Handler)で行い、成功後は`/dashboard`へリダイレクトする。
+~~`middleware.ts`で`/dashboard`以下すべてに対しSupabaseセッションの有無をチェックし、未ログインなら`/login`へリダイレクトする。~~
+
+`proxy.ts`(Next.js 16で`middleware.ts`から名称変更。exportする関数名も`middleware`→`proxy`)で`/dashboard`以下すべてに対しSupabaseセッションの有無をチェックし、未ログインなら`/login`へリダイレクトする。GitHub OAuthのcode交換自体は`auth/callback/route.ts`(Route Handler)で行い、成功後は`/dashboard`へリダイレクトする。
 
 ---
 
